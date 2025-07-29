@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;MVC_program/src/main/webapp/view.html&apos; to &apos;insert.html&apos;" description="Rename resource &apos;view.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/view.html" name="insert.html" stamp="1748079420078" updateReferences="true"/>
+</session>

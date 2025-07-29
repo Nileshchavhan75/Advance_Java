@@ -1,0 +1,29 @@
+package com.controller;
+import java.sql.*;
+public class InsertUsingP {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/college";
+        String username = "root";
+        String password = "Nilesh@7";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            try (
+                Connection connection = DriverManager.getConnection(url, username, password);
+                PreparedStatement pstmt = connection.prepareStatement(
+                    "INSERT INTO student (roll_num, name) VALUES (?, ?)"
+                );
+            ) {
+                pstmt.setInt(1, 111); // roll number
+                pstmt.setString(2, "Rahul"); // name
+
+                int rowsInserted = pstmt.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Data inserted successfully");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}

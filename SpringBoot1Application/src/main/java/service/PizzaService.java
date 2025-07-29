@@ -1,0 +1,11 @@
+package service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class PizzaService {
+
+    public String servePizza() {
+        return "Here's your delicious cheese burst pizza;;;;;;;;;;;;;;;;;;;!";
+    }
+}

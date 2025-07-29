@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Form</title>
+</head>
+<body>
+    <h2>Customer Registration</h2>
+    <form action="CustomerServlet" method="post">
+        Name: <input type="text" name="name" required><br><br>
+        Email: <input type="email" name="email" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+package com.controller;
+
+import java.sql.*;
+
+public class DriverMetaInfo {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/college";
+        String username = "root";
+        String password = "Nilesh@7";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            try (
+                Connection connection = DriverManager.getConnection(url, username, password)
+            ) {
+                DatabaseMetaData dbMetaData = connection.getMetaData();
+
+                System.out.println("Driver Name: " + dbMetaData.getDriverName());
+                System.out.println("Driver Version: " + dbMetaData.getDriverVersion());
+                System.out.println("Driver Major Version: " + dbMetaData.getDriverMajorVersion());
+                System.out.println("Driver Minor Version: " + dbMetaData.getDriverMinorVersion());
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}

@@ -1,0 +1,34 @@
+package com.controller;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class JDBCExample {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/college";
+        String username = "root";
+        String password = "Nilesh@7";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            try (
+                Connection connection = DriverManager.getConnection(url, username, password);
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT roll_num, name FROM student");
+            ) {
+                System.out.println("Connection established successfully!");
+
+                while (resultSet.next()) {
+                    int rollNum = resultSet.getInt("roll_num");
+                    String name = resultSet.getString("name");
+                    System.out.println("Roll Number: " + rollNum + ", Name: " + name);
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+

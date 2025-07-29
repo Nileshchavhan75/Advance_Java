@@ -1,0 +1,10 @@
+package jika;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class OutsideJika {
+    public void sayHello() {
+        System.out.println("Hello from OutsideJika!");
+    }
+}

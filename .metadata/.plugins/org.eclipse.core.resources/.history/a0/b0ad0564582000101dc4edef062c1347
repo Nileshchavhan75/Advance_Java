@@ -1,0 +1,40 @@
+package com.controller;
+
+import java.io.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.sql.*;
+
+public class CustomerServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+
+        String url = "jdbc:mysql://localhost:3306/college";
+        String username = "root";
+        String password = "Nilesh@7";
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            try (Connection conn = DriverManager.getConnection(url, username, password);
+                 PreparedStatement ps = conn.prepareStatement("INSERT INTO customer (name, email) VALUES (?, ?)")) {
+
+                ps.setString(1, name);
+                ps.setString(2, email);
+                int rows = ps.executeUpdate();
+
+                if (rows > 0) {
+                    out.println("<h3>Customer registered successfully!</h3>");
+                } else {
+                    out.println("<h3>Failed to register customer.</h3>");
+                }
+            }
+        } catch (Exception e) {
+            out.println("<h3>Error: " + e.getMessage() + "</h3>");
+        }
+    }
+}

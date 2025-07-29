@@ -1,0 +1,30 @@
+package com.controller;
+import java.sql.Connection;
+import java.sql.*;
+
+public class InsertExample {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/college";
+        String username = "root";
+        String password = "Nilesh@7";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            try (
+                Connection connection = DriverManager.getConnection(url, username, password);
+                Statement statement = connection.createStatement();
+            ) {
+                String insertQuery = "INSERT INTO student (roll_num, name) VALUES (101, 'Ganesh'),(100,'Shivay')";
+                int rowsInserted = statement.executeUpdate(insertQuery);
+
+                if (rowsInserted > 0) {
+                    System.out.println("Data inserted successfully!");
+                } else {
+                    System.out.println("Insert failed.");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
